@@ -6,20 +6,23 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:05:49 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/16 17:28:10 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/18 16:47:13 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static void	choose_conversion(const char *format, t_fields fields, size_t result)
+static const char	*choose_conversion(const char *format,
+		t_fields *fields)
 {
-	if (*format == 'c')
-		conversion_c(format, fields, result);
-	if (*format == 's')
-		conversion_s(format, fields, result);
-	if (*format == 'p')
+	if (*format == '%')
+		conversion_percentage(fields);
+	else if (*format == 'c')
+		conversion_c(fields);
+	else if (*format == 's')
+		conversion_s(fields);
+/*	if (*format == 'p')
 		conversion_p(format, fields, result);
 	if (*format == 'd')
 		conversion_d(format, fields, result);
@@ -34,46 +37,65 @@ static void	choose_conversion(const char *format, t_fields fields, size_t result
 	if (*format == 'X')
 		conversion_X(format, fields, result);
 	if (*format == 'f')
-		conversion_f(format, fields, result);
+		conversion_f(format, fields, result);*/
+	return (format++);
 }
 
-static void	magic(const char *format, t_fields fields, size_t result)
+static void		initialize_t_fields(t_fields *fields)
+{
+	fields->hash = 0;
+	fields->zero = 0;
+	fields->minus = 0;
+	fields->plus = 0;
+	fields->space = 0;
+	fields->min = -1;
+	fields->min_astr = 0;
+	fields->dot = 0;
+	fields->precision = -1;
+	fields->prec_astr = 0;
+	fields->hh = 0;
+	fields->h = 0;
+	fields->l = 0;
+	fields->ll = 0;
+}
+
+static void		magic(const char *format, t_fields *fields)
 {
 	while (*format)
 	{
 		if (*format == '%')
 		{
-			if (*(format + 1) == '%')
-			{
-				result++;
-				format++;
-				write(1, "%", 1);
-			}
-			else
-			{
-				choose_flags(format, fields);
-				choose_width_and_precision(format, fields);
-				choose_length(format, fields);
-				choose_conversion(format, fields, result);
-			}
+			format++;
+			initialize_t_fields(fields);
+			format = choose_flags(format, fields);
+			format = choose_width_and_precision(format, fields);
+			format = choose_length(format, fields);
+			format = choose_conversion(format, fields);
 		}
 		else
 		{
-			result++;
+			fields->result++;
 			write(1, format, 1);
 		}
 		format++;
 	}
 }
 
-int			ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
-	size_t		result;
-	t_fields	fields;
+	size_t		amount_printed;
+	t_fields	*fields;
 
-	result = 0;
-	va_start(fields.ap, format);
-	magic(format, fields, result);
-	va_end(fields.ap);
-	return (result);
+	if (format == NULL)
+		return (0);
+	fields = (t_fields *)malloc(sizeof(t_fields));
+	if (fields == NULL)
+		return (-1);
+	fields->result = 0;
+	va_start(fields->ap, format);
+	magic(format, fields);
+	va_end(fields->ap);
+	amount_printed = fields->result;
+	free(fields);
+	return (amount_printed);
 }

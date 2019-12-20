@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 12:02:43 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/18 16:17:55 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/20 12:15:20 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ const char		*choose_length(const char *format, t_fields *fields);
 void			conversion_percentage(t_fields *fields);
 void			conversion_c(t_fields *fields);
 void			conversion_s(t_fields *fields);
-void			conversion_p(const char *format, t_fields fields, size_t result);
-void			conversion_d(const char *format, t_fields fields, size_t result);
+void			conversion_p(t_fields *fields);
+void			conversion_d(t_fields *fields);
 void			conversion_i(const char *format, t_fields fields, size_t result);
 void			conversion_o(const char *format, t_fields fields, size_t result);
 void			conversion_u(const char *format, t_fields fields, size_t result);

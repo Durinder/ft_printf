@@ -6,20 +6,20 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 15:02:08 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/19 15:56:05 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/20 12:43:32 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa_base(int n, short base)
+char	*ft_itoa_base(long long n, short base)
 {
-	char	*s;
-	short	counter;
-	int		tmp;
+	char		*s;
+	short		counter;
+	long long	tmp;
 
 	if (base == 10)
-		return(ft_itoa(n));
+		return (ft_itoa(n));
 	counter = -1;
 	tmp = n;
 	while (tmp)
@@ -35,7 +35,7 @@ char	*ft_itoa_base(int n, short base)
 		if (tmp < 10)
 			s[counter--] = tmp + 48;
 		else
-			s[counter--] = tmp + 55;
+			s[counter--] = tmp + 87;
 		n /= base;
 	}
 	return (s);

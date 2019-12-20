@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:05:49 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/18 16:47:13 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/20 12:56:54 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static const char	*choose_conversion(const char *format,
 		conversion_c(fields);
 	else if (*format == 's')
 		conversion_s(fields);
-/*	if (*format == 'p')
-		conversion_p(format, fields, result);
-	if (*format == 'd')
-		conversion_d(format, fields, result);
-	if (*format == 'i')
+	else if (*format == 'p')
+		conversion_p(fields);
+	else if (*format == 'd')
+		conversion_d(fields);
+/*	if (*format == 'i')
 		conversion_i(format, fields, result);
 	if (*format == 'o')
 		conversion_o(format, fields, result);
@@ -97,5 +97,6 @@ int				ft_printf(const char *format, ...)
 	va_end(fields->ap);
 	amount_printed = fields->result;
 	free(fields);
+	while (1) {};
 	return (amount_printed);
 }

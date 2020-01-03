@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:05:49 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/20 13:08:46 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/03 17:02:12 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static const char	*choose_conversion(const char *format,
 		conversion_p(fields);
 	else if (*format == 'd')
 		conversion_d(fields);
-/*	if (*format == 'i')
-		conversion_i(format, fields, result);
+	else if (*format == 'i')
+		conversion_d(fields);/*
 	if (*format == 'o')
 		conversion_o(format, fields, result);
 	if (*format == 'u')
@@ -66,6 +66,8 @@ static void		magic(const char *format, t_fields *fields)
 		if (*format == '%')
 		{
 			format++;
+			if (format == '\0')
+				break ;
 			initialize_t_fields(fields);
 			format = choose_flags(format, fields);
 			format = choose_width_and_precision(format, fields);

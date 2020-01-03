@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 11:57:13 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/03 12:59:06 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/03 17:17:30 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ static void	zeroes_and_spaces(t_fields *fields, char *s)
 {
 	if (fields->zero == 1 && fields->minus == 0)
 	{
-		while (fields->min - (int)ft_strlen(s) > 0)
+		while (fields->min - (int)ft_strlen(s) > 2)
 		{
 			fields->min--;
 			write(1, "0", 1);
 			fields->result++;
 		}
 	}
-	while (fields->minus == 0 && fields->min > (int)ft_strlen(s) &&
-			fields->min > 0)
+	while (fields->minus == 0 && fields->min - 2 > (int)ft_strlen(s) &&
+			fields->min > 2)
 	{
 		fields->min--;
 		write(1, " ", 1);
@@ -59,7 +59,7 @@ void		conversion_p(t_fields *fields)
 	print(fields, s);
 	if (fields->minus == 1 && fields->zero == 0)
 	{
-		while (fields->min-- > 0)
+		while (fields->min-- > 2)
 		{
 			write(1, " ", 1);
 			fields->result++;

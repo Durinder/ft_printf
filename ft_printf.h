@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 12:02:43 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/20 12:15:20 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/03 14:48:05 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,29 @@ typedef struct	s_fields {
 	char	ll;
 }				t_fields;
 
+typedef struct	s_length_type {
+	long		long_n;
+	long long	long_long_n;
+	short		short_n;
+	signed char	signed_char_n;
+	int			int_n;
+}				t_length_type;
+
 int				ft_printf(const char *format, ...);
 const char		*choose_flags(const char *format, t_fields *fields);
-const char		*choose_width_and_precision(const char *format, t_fields *fields);
+const char		*choose_width_and_precision(const char *format,
+		t_fields *fields);
 const char		*choose_length(const char *format, t_fields *fields);
 void			conversion_percentage(t_fields *fields);
 void			conversion_c(t_fields *fields);
 void			conversion_s(t_fields *fields);
 void			conversion_p(t_fields *fields);
 void			conversion_d(t_fields *fields);
-void			conversion_i(const char *format, t_fields fields, size_t result);
-void			conversion_o(const char *format, t_fields fields, size_t result);
-void			conversion_u(const char *format, t_fields fields, size_t result);
-void			conversion_x(const char *format, t_fields fields, size_t result);
-void			conversion_X(const char *format, t_fields fields, size_t result);
-void			conversion_f(const char *format, t_fields fields, size_t result);
+void			conversion_i(t_fields *fields);
+void			conversion_o(t_fields *fields);
+void			conversion_u(t_fields *fields);
+void			conversion_x(t_fields *fields);
+void			conversion_cap_x(t_fields *fields);
+void			conversion_f(t_fields *fields);
+char			*choose_type(t_fields *fields);
 #endif

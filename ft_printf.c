@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:05:49 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/20 12:56:54 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/20 13:08:46 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,6 @@ int				ft_printf(const char *format, ...)
 	va_end(fields->ap);
 	amount_printed = fields->result;
 	free(fields);
-	while (1) {};
+//	while (1) {};
 	return (amount_printed);
 }

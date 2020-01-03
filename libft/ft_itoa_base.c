@@ -6,29 +6,16 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 15:02:08 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/20 12:43:32 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/03 13:18:23 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa_base(long long n, short base)
+static char		*copy_chars(long long n, short counter, char *s, short base)
 {
-	char		*s;
-	short		counter;
 	long long	tmp;
 
-	if (base == 10)
-		return (ft_itoa(n));
-	counter = -1;
-	tmp = n;
-	while (tmp)
-	{
-		tmp /= base;
-		counter++;
-	}
-	if (!(s = (char *)ft_memalloc(counter + 1)))
-		return (NULL);
 	while (n)
 	{
 		tmp = n % base;
@@ -38,5 +25,41 @@ char	*ft_itoa_base(long long n, short base)
 			s[counter--] = tmp + 87;
 		n /= base;
 	}
+	return (s);
+}
+
+static short	count_length(long long n, short base)
+{
+	short	len;
+
+	len = 0;
+	while (n)
+	{
+		n /= base;
+		len++;
+	}
+	return (len);
+}
+
+char			*ft_itoa_base(long long n, short base)
+{
+	char		*s;
+	short		counter;
+
+	if (base == 10)
+		return (ft_itoa(n));
+	if (n == 0)
+	{
+		if (!(s = ft_strnew(0)))
+			return (NULL);
+		s[0] = '0';
+		return (s);
+	}
+	counter = count_length(n, base);
+	if (!(s = ft_strnew(counter)))
+		return (NULL);
+	if (n < 0)
+		n = -n;
+	s = copy_chars(n, --counter, s, base);
 	return (s);
 }

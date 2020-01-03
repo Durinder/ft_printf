@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:21:58 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/20 12:29:17 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/20 14:37:25 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 char				*ft_itoa_base(long long n, short base);
 short				ft_nbrlen(long long n);
+char				*ft_itoa_ll(long long nb);
 #endif

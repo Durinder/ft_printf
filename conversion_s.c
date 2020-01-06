@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 12:40:35 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/06 17:36:21 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/06 17:44:02 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,9 @@ void		conversion_s(t_fields *fields)
 	zeroes_and_spaces(fields, s);
 	print(fields, s);
 	if (fields->minus == 1)
-	{
 		while (fields->min-- > 0)
 		{
 			write(1, " ", 1);
 			fields->result++;
 		}
-	}
 }

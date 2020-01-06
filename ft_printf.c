@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:05:49 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/03 17:02:12 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/06 16:27:06 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static const char	*choose_conversion(const char *format,
 		conversion_X(format, fields, result);
 	if (*format == 'f')
 		conversion_f(format, fields, result);*/
+//	if (*format == '\0') APPARENTLY DONT NEED THIS!
+//		return (format);
 	return (format++);
 }
 
@@ -66,7 +68,7 @@ static void		magic(const char *format, t_fields *fields)
 		if (*format == '%')
 		{
 			format++;
-			if (format == '\0')
+			if (*format == '\0')
 				break ;
 			initialize_t_fields(fields);
 			format = choose_flags(format, fields);
@@ -79,7 +81,8 @@ static void		magic(const char *format, t_fields *fields)
 			fields->result++;
 			write(1, format, 1);
 		}
-		format++;
+		if (*format != '\0')
+			format++;
 	}
 }
 

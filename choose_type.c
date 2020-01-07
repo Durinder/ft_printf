@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:44:52 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/03 15:35:46 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/07 17:47:24 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ static char	*choose_more2(char *s, t_fields *fields)
 	if (fields->l != 1 && fields->ll != 1 && fields->h != 1 && fields->hh != 1)
 	{
 		length.int_n = va_arg(fields->ap, int);
-		if (length.int_n == 0 && fields->plus == 0)
-			s = ft_strnew(0);
-		else
-			s = ft_itoa(length.int_n);
+		s = ft_itoa(length.int_n);
 	}
 	return (s);
 }
@@ -63,5 +60,7 @@ char		*choose_type(t_fields *fields)
 		s = ft_itoa_ll(length.long_long_n);
 	}
 	s = choose_more(s, fields);
+	if (ft_strcmp(s, "0") == 0 && fields->precision == 0)
+		s[0] = '\0';
 	return (s);
 }

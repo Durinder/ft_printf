@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 12:02:43 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/08 11:57:03 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/08 12:02:14 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_length_type_ouxx {
 	unsigned long long	unsigned_long_long_n;
 	unsigned short		unsigned_short_n;
 	unsigned char		unsigned_char_n;
+	int					int_n;
 }				t_length_type_ouxx;
 
 int				ft_printf(const char *format, ...);

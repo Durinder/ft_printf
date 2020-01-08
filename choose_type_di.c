@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:44:52 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/08 11:47:29 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/08 11:55:20 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static char	*choose_more2(char *s, t_fields *fields)
 {
-	t_length_type	length;
+	t_length_type_di	length;
 
 	if (fields->l != 1 && fields->ll != 1 && fields->h != 1 && fields->hh != 1)
 	{
@@ -27,7 +27,7 @@ static char	*choose_more2(char *s, t_fields *fields)
 
 static char	*choose_more(char *s, t_fields *fields)
 {
-	t_length_type	length;
+	t_length_type_di	length;
 
 	if (fields->h == 1)
 	{
@@ -45,8 +45,8 @@ static char	*choose_more(char *s, t_fields *fields)
 
 char		*choose_type_di(t_fields *fields)
 {
-	char			*s;
-	t_length_type	length;
+	char				*s;
+	t_length_type_di	length;
 
 	s = NULL;
 	if (fields->l == 1)

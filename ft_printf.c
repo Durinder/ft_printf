@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:05:49 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/06 16:27:06 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/08 11:49:11 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static const char	*choose_conversion(const char *format,
 	else if (*format == 'p')
 		conversion_p(fields);
 	else if (*format == 'd')
-		conversion_d(fields);
+		conversion_di(fields);
 	else if (*format == 'i')
-		conversion_d(fields);/*
+		conversion_di(fields);/*
 	if (*format == 'o')
 		conversion_o(format, fields, result);
 	if (*format == 'u')

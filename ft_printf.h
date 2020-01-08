@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 12:02:43 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/03 14:48:05 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/08 11:48:00 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,11 @@ void			conversion_percentage(t_fields *fields);
 void			conversion_c(t_fields *fields);
 void			conversion_s(t_fields *fields);
 void			conversion_p(t_fields *fields);
-void			conversion_d(t_fields *fields);
-void			conversion_i(t_fields *fields);
+void			conversion_di(t_fields *fields);
 void			conversion_o(t_fields *fields);
 void			conversion_u(t_fields *fields);
 void			conversion_x(t_fields *fields);
 void			conversion_cap_x(t_fields *fields);
 void			conversion_f(t_fields *fields);
-char			*choose_type(t_fields *fields);
+char			*choose_type_di(t_fields *fields);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 12:02:43 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/08 12:02:14 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/08 13:38:03 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_length_type_ouxx {
 	unsigned long long	unsigned_long_long_n;
 	unsigned short		unsigned_short_n;
 	unsigned char		unsigned_char_n;
-	int					int_n;
+	unsigned int		unsigned_int_n;
 }				t_length_type_ouxx;
 
 int				ft_printf(const char *format, ...);
@@ -71,4 +71,8 @@ void			conversion_x(t_fields *fields);
 void			conversion_cap_x(t_fields *fields);
 void			conversion_f(t_fields *fields);
 char			*choose_type_di(t_fields *fields);
+char			*choose_type_o(t_fields *fields);
+char			*choose_type_u(t_fields *fields);
+char			*choose_type_x(t_fields *fields);
+char			*choose_type_cap_x(t_fields *fields);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:05:49 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/08 11:49:11 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/08 13:49:12 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ static const char	*choose_conversion(const char *format,
 	else if (*format == 'd')
 		conversion_di(fields);
 	else if (*format == 'i')
-		conversion_di(fields);/*
-	if (*format == 'o')
-		conversion_o(format, fields, result);
-	if (*format == 'u')
-		conversion_u(format, fields, result);
-	if (*format == 'x')
-		conversion_x(format, fields, result);
-	if (*format == 'X')
-		conversion_X(format, fields, result);
+		conversion_di(fields);
+	else if (*format == 'o')
+		conversion_o(fields);
+	else if (*format == 'u')
+		conversion_u(fields);/*
+	else if (*format == 'x')
+		conversion_x(fields);
+	else if (*format == 'X')
+		conversion_cap_x(fields);
 	if (*format == 'f')
 		conversion_f(format, fields, result);*/
 //	if (*format == '\0') APPARENTLY DONT NEED THIS!

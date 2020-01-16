@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:24:29 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/16 16:17:23 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/16 16:36:57 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,9 @@ char			*ft_float_round(const char *src, int precision)
 	if (tmp == NULL)
 		return (NULL);
 	tmp2 = ft_strjoin(array[0], ".");
-	result = ft_strjoin(tmp2, ft_memmove(tmp, array[1], precision));
+	tmp = ft_memmove(tmp, array[1], precision);
+	tmp[precision] = '\0';
+	result = ft_strjoin(tmp2, tmp);
 	ft_strdel(&tmp);
 	ft_strdel(&tmp2);
 	ft_strdel(&array[0]);

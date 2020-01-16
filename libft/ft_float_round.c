@@ -6,144 +6,144 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:24:29 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/13 19:36:31 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/16 16:17:23 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*rounding(char *s, const char *src, long long precision)
+static char		*rounding(char *s, int precision)
 {
 	size_t	carry;
 	size_t	i;
 
 	carry = 0;
 	i = 0;
-	if (src[precision] >= '5')
+	if (s[precision] >= '5')
 	{
 		carry++;
 		i = precision;
-		while (src[--i] >= '9' && i >= 0)
+		while (i >= 0 && s[--i] >= '9')
 			carry++;
 	}
 	while (precision--)
 	{
 		if (carry)
 		{
-			s[precision] = src[precision] + 1;
+			s[precision] += 1;
 			if (s[precision] == 58)
 				s[precision] = '0';
 			carry--;
 		}
-		else
-			s[precision] = src[precision];
 	}
 	return (s);
 }
 
-static char	*decimal_assignment(const char *src, long long precision,
-		long long len)
+static char		*decimal_assignment(char *s, int precision)
 {
-	char	*s;
+	char	*tmp;
 	size_t	i;
 
-	if (!(s = ft_strnew(precision)))
-		return (NULL);
-	i = 0;
-	if (len <= precision)
+	if ((int)ft_strlen(s) < precision)
 	{
-		while (len-- && precision--)
+		if (!(tmp = ft_strnew(precision)))
+			return (NULL);
+		i = 0;
+		while (s[i])
 		{
-			s[i] = src[i];
+			tmp[i] = s[i];
 			i++;
+			precision--;
 		}
 		while (precision--)
-			s[i++] = '0';
+			tmp[i++] = '0';
+		ft_strdel(&s);
+		return (tmp);
 	}
 	else
-	{
-		s = rounding(s, src, precision);
-	}
-	return (s);
+		return (s = rounding(s, precision));
 }
 
-static char	*decimal_overflow_assignment(char *s, long long len,
-		long long carry)
+static char		*decimal_overflow_assignment(char *s, long long i, size_t carry,
+		char *tmp)
 {
-	if (len == -1)
+	if (i == -1 || (i == 0 && s[0] == '-'))
 	{
-		len = ft_strlen(s);
-		if (!(s = ft_strnew(ft_strlen(s))))
+		if (!(tmp = ft_strnew(ft_strlen(s))))
 			return (NULL);
-		s[0] = '1';
-		s[len] = '.';
-		while (len-- > 1)
-			s[len] = '0';
+		i = 0;
+		if (s[0] == '-')
+			tmp[i++] = '-';
+		tmp[i++] = '1';
+		while (carry-- > 1)
+			tmp[i++] = '0';
+		ft_strdel(&s);
+		return (tmp);
 	}
 	else
 	{
-		len = ft_strlen(s) - 2;
+		i = ft_strlen(s) - 1;
 		while (carry--)
 		{
-			s[len--] += 1;
-			if (s[len + 1] == 58)
-				s[len + 1] = '0';
+			s[i--] += 1;
+			if (s[i + 1] == 58)
+				s[i + 1] = '0';
 		}
 	}
 	return (s);
 }
 
-static char	*check_decimal_overflow(char *s, const char *src, long long len,
-		long long precision)
+static char		*integer_assignment(char *integers, const char *decimals,
+		int precision)
 {
+	char	*tmp;
+	size_t	i;
 	size_t	carry;
 
-	if (len <= precision)
-		return (s);
-	if (src[precision--] >= '5')
+	if ((int)ft_strlen(decimals) <= precision)
+		return (integers);
+	else if (decimals[precision--] >= '5')
 	{
-		while (src[precision] == '9' && precision >= 0)
+		while (precision >= 0 && decimals[precision] == '9')
 			precision--;
 		if (precision == -1)
 		{
-			len = ft_strlen(s) - 2;
+			i = ft_strlen(integers) - 1;
 			carry = 1;
-			while (len >= 0 && s[len] == '9')
+			while (i >= 0 && integers[i] == '9')
 			{
-				len--;
+				i--;
 				carry++;
 			}
-			s = decimal_overflow_assignment(s, len, carry);
+			tmp = NULL;
+			integers = decimal_overflow_assignment(integers, i, carry, tmp);
 		}
 	}
-	return (s);
+	return (integers);
 }
 
-char		*ft_float_round(const char *src, long long precision)
+char			*ft_float_round(const char *src, int precision)
 {
-	char		*s;
-	long long	len;
+	char	**array;
+	char	*result;
+	char	*tmp;
+	char	*tmp2;
 
-	len = 0;
-	if (*src)
-	{
-		if (precision <= 0)
-			precision = 6;
-		while (src[len] != '.' && src[len] != '\0')
-			len++;
-		if (!(s = ft_strnew(len)))
-			return (NULL);
-		s[len] = '.';
-		while (len--)
-			s[len] = src[len];
-		while (*src != '.' && *src != '\0')
-			src++;
-		if (*src == '.')
-			src++;
-		s = check_decimal_overflow(s, src, (long long)ft_strlen(src),
-				precision);
-		s = ft_strjoin(s, decimal_assignment(src, precision, ft_strlen(src)));
-		return (s);
-	}
-	return (NULL);
+	if (precision <= 0)
+		precision = 6;
+	array = ft_strsplit(src, '.');
+	array[0] = integer_assignment(array[0], array[1], precision);
+	array[1] = decimal_assignment(array[1], precision);
+	tmp = (char *)malloc(sizeof(char) * (precision + 1));
+	if (tmp == NULL)
+		return (NULL);
+	tmp2 = ft_strjoin(array[0], ".");
+	result = ft_strjoin(tmp2, ft_memmove(tmp, array[1], precision));
+	ft_strdel(&tmp);
+	ft_strdel(&tmp2);
+	ft_strdel(&array[0]);
+	ft_strdel(&array[1]);
+	ft_strdel(array);
+	free(array);
+	return (result);
 }

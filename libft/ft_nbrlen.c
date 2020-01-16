@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 16:29:34 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/19 16:32:06 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/16 16:18:38 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ short	ft_nbrlen(long long n)
 	short	len;
 
 	len = 0;
+	if (n == 0)
+		return (1);
 	while (n)
 	{
 		n /= 10;

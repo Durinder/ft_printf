@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:21:58 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/13 19:33:45 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/15 12:58:24 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,5 @@ char				*ft_itoa_ll(long long nb);
 char				*ft_itoa_ull(unsigned long long nb);
 char				*ft_itoa_base_ull(unsigned long long n, short base);
 char				*ft_itoa_float(long double n);
-char				*ft_float_round(const char *src, long long precision);
+char				*ft_float_round(const char *src, int precision);
 #endif

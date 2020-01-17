@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:08:04 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/17 12:46:22 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 12:58:06 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char			*integer_assignment(long double n)
 	{
 		integers[0] = '-';
 		counter++;
-		n = -n;
+		nb = -nb;
 	}
 	integers[counter--] = '.';
 	if (nb == 0)

@@ -6,11 +6,12 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 16:29:34 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/16 16:18:38 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 19:54:17 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 short	ft_nbrlen(long long n)
 {

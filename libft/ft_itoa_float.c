@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:08:04 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/17 12:58:06 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 19:53:58 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char			*integer_assignment(long double n)
 
 	nb = n;
 	counter = ft_nbrlen(nb);
-	integers = n < 0 ? ft_strnew(counter + 1) : ft_strnew(counter);
+	integers = n < 0 ? ft_strnew(counter + 2) : ft_strnew(counter + 1);
 	if (integers == NULL)
 		return (NULL);
 	if (n < 0)

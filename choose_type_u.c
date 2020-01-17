@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 13:49:39 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/08 13:58:06 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/09 15:44:23 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ char		*choose_type_u(t_fields *fields)
 	if (fields->l == 1)
 	{
 		length.unsigned_long_n = va_arg(fields->ap, unsigned long);
-		s = ft_itoa_ll(length.unsigned_long_n);
+		s = ft_itoa_ull(length.unsigned_long_n);
 	}
 	else if (fields->ll == 1)
 	{
 		length.unsigned_long_long_n = va_arg(fields->ap, unsigned long long);
-		s = ft_itoa_ll(length.unsigned_long_long_n);
+		s = ft_itoa_ull(length.unsigned_long_long_n);
 	}
 	s = choose_more(s, fields);
 	if (ft_strcmp(s, "0") == 0 && fields->precision == 0)

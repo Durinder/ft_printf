@@ -6,12 +6,22 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:13:01 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/18 16:03:28 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/13 19:41:13 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
+
+const char	*choose_length2(const char *format, t_fields *fields)
+{
+	if (*format == 'L')
+	{
+		fields->cap_l = 1;
+		format++;
+	}
+	return (format);
+}
 
 const char	*choose_length(const char *format, t_fields *fields)
 {
@@ -26,7 +36,7 @@ const char	*choose_length(const char *format, t_fields *fields)
 			fields->h = 1;
 		format++;
 	}
-	if (*format == 'l')
+	else if (*format == 'l')
 	{
 		if (*(format + 1) == 'l')
 		{
@@ -37,6 +47,8 @@ const char	*choose_length(const char *format, t_fields *fields)
 			fields->l = 1;
 		format++;
 	}
+	else
+		format = choose_length2(format, fields);
 	return (format);
 }
 

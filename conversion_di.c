@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 15:59:08 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/08 11:49:36 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 12:06:39 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static short	additional_sign_and_space_check(t_fields *fields, char *s,
 	inc = 0;
 	if (fields->precision == -1)
 		inc = 1;
-	if (fields->plus == 1 && s[0] != '-' && (fields->min ==
+	if (fields->plus == 1 && s[0] != '-' && fields->zero != 1 && (fields->min ==
 				fields->precision + inc + 1 || s_len + 1 == fields->min))
 	{
 		write(1, "+", 1);
@@ -102,8 +102,9 @@ static short	sign_and_space_check(t_fields *fields, char *s, int s_len,
 		fields->result++;
 	}
 	else if (s[0] == '-' && (s_len >= fields->min || fields->minus == 1 ||
-				(fields->zero == 1 && (fields->precision >= fields->min ||
-									fields->precision == -1))))
+				fields->precision >= fields->min || (fields->zero == 1 &&
+					(fields->precision >= fields->min ||
+					fields->precision == -1))))
 	{
 		write(1, "-", 1);
 		sign_check = 1;
@@ -141,6 +142,5 @@ void			conversion_di(t_fields *fields)
 			write(1, " ", 1);
 			fields->result++;
 		}
-	if (ft_strcmp(s, "") != 0)
-		ft_strdel(&s);
+	ft_strdel(&s);
 }

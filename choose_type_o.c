@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 11:52:30 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/08 13:41:33 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 11:40:30 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@
 static char	*additional_checks(char *s, t_fields *fields)
 {
 	char	*hash_s;
+	char	*zero;
 
 	if (ft_strcmp(s, "0") == 0 && fields->precision == 0 && fields->hash == 0)
 		s[0] = '\0';
 	else if (ft_strcmp(s, "0") != 0 && fields->hash == 1)
 	{
-		hash_s = ft_strnew(ft_strlen(s));
-		hash_s = ft_strjoin("0", s);
+		hash_s = ft_strdup(s);
+		zero = ft_strnew(1);
+		zero[0] = '0';
 		ft_strdel(&s);
-		s = ft_strdup(hash_s);
+		s = ft_strjoin(zero, hash_s);
+		ft_strdel(&zero);
 		ft_strdel(&hash_s);
+		return (s);
 	}
 	return (s);
 }
@@ -69,12 +73,12 @@ char		*choose_type_o(t_fields *fields)
 	if (fields->l == 1)
 	{
 		length.unsigned_long_n = va_arg(fields->ap, unsigned long);
-		s = ft_itoa_base(length.unsigned_long_n, 8);
+		s = ft_itoa_base_ull(length.unsigned_long_n, 8);
 	}
 	else if (fields->ll == 1)
 	{
 		length.unsigned_long_long_n = va_arg(fields->ap, unsigned long long);
-		s = ft_itoa_base(length.unsigned_long_long_n, 8);
+		s = ft_itoa_base_ull(length.unsigned_long_long_n, 8);
 	}
 	s = choose_more(s, fields);
 	s = additional_checks(s, fields);

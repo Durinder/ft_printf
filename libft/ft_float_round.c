@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:24:29 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/16 17:04:45 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 12:12:57 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static char		*rounding(char *s, int precision)
 {
+	char	*tmp;
 	size_t	carry;
 	size_t	i;
 
@@ -26,17 +27,17 @@ static char		*rounding(char *s, int precision)
 		while (i >= 0 && s[--i] >= '9')
 			carry++;
 	}
+	tmp = ft_strsub(s, 0, precision);
 	while (precision--)
-	{
 		if (carry)
 		{
-			s[precision] += 1;
-			if (s[precision] == 58)
-				s[precision] = '0';
+			tmp[precision] = s[precision] + 1;
+			if (tmp[precision] == 58)
+				tmp[precision] = '0';
 			carry--;
 		}
-	}
-	return (s);
+	ft_strdel(&s);
+	return (tmp);
 }
 
 static char		*decimal_assignment(char *s, int precision)
@@ -124,29 +125,28 @@ static char		*integer_assignment(char *integers, const char *decimals,
 
 char			*ft_float_round(const char *src, int precision)
 {
-	char	**array;
+	char	*integers;
+	char	*decimals;
 	char	*result;
-	char	*tmp;
-	char	*tmp2;
+	size_t	i;
+	size_t	j;
 
-	if (precision <= 0)
+	if (precision == -1)
 		precision = 6;
-	array = ft_strsplit(src, '.');
-	if (!(array[1]))
-	{
-		array[1] = ft_strnew(1);
-		array[1][0] = '0';
-	}
-	array[0] = integer_assignment(array[0], array[1], precision);
-	array[1] = decimal_assignment(array[1], precision);
-	tmp2 = ft_strnew(precision);
-	tmp2 = ft_memmove(tmp2, array[1], precision);
-	tmp = ft_strjoin(array[0], ".");
-	result = ft_strjoin(tmp, tmp2);
-	ft_strdel(&tmp);
-	ft_strdel(&tmp2);
-	ft_strdel(&array[0]);
-	ft_strdel(&array[1]);
-	free(array);
+	i = 0;
+	while (src[i] != '.' && src[i] != '\0')
+		i++;
+	integers = ft_strsub(src, 0, i);
+	j = 0;
+	while (src[j])
+		j++;
+	decimals = ft_strsub(src, i + 1, j);
+	integers = integer_assignment(integers, decimals, precision);
+	decimals = decimal_assignment(decimals, precision);
+	if (decimals[0])
+		integers = ft_strncat(integers, ".", 1);
+	result = ft_strjoin(integers, decimals);
+	ft_strdel(&integers);
+	ft_strdel(&decimals);
 	return (result);
 }

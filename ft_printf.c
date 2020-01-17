@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:05:49 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/08 13:49:12 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 20:00:06 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,17 @@ static const char	*choose_conversion(const char *format,
 	else if (*format == 'o')
 		conversion_o(fields);
 	else if (*format == 'u')
-		conversion_u(fields);/*
+		conversion_u(fields);
 	else if (*format == 'x')
 		conversion_x(fields);
 	else if (*format == 'X')
 		conversion_cap_x(fields);
-	if (*format == 'f')
-		conversion_f(format, fields, result);*/
-//	if (*format == '\0') APPARENTLY DONT NEED THIS!
-//		return (format);
+	else if (*format == 'f')
+		conversion_f(fields);
 	return (format++);
 }
 
-static void		initialize_t_fields(t_fields *fields)
+static void			initialize_t_fields(t_fields *fields)
 {
 	fields->hash = 0;
 	fields->zero = 0;
@@ -59,9 +57,10 @@ static void		initialize_t_fields(t_fields *fields)
 	fields->h = 0;
 	fields->l = 0;
 	fields->ll = 0;
+	fields->cap_l = 0;
 }
 
-static void		magic(const char *format, t_fields *fields)
+static void			magic(const char *format, t_fields *fields)
 {
 	while (*format)
 	{
@@ -86,7 +85,7 @@ static void		magic(const char *format, t_fields *fields)
 	}
 }
 
-int				ft_printf(const char *format, ...)
+int					ft_printf(const char *format, ...)
 {
 	size_t		amount_printed;
 	t_fields	*fields;
@@ -102,6 +101,5 @@ int				ft_printf(const char *format, ...)
 	va_end(fields->ap);
 	amount_printed = fields->result;
 	free(fields);
-//	while (1) {};
 	return (amount_printed);
 }

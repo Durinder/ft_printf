@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:08:04 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/17 12:36:46 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 12:46:22 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,14 @@ static char		*decimal_assignment(long double n)
 	return (decimals);
 }
 
-char			*integer_assignment(long long n)
+char			*integer_assignment(long double n)
 {
-	char	*integers;
-	short	counter;
+	long long	nb;
+	char		*integers;
+	short		counter;
 
-	counter = ft_nbrlen(n);
+	nb = n;
+	counter = ft_nbrlen(nb);
 	integers = n < 0 ? ft_strnew(counter + 1) : ft_strnew(counter);
 	if (integers == NULL)
 		return (NULL);
@@ -67,12 +69,12 @@ char			*integer_assignment(long long n)
 		n = -n;
 	}
 	integers[counter--] = '.';
-	if (n == 0)
+	if (nb == 0)
 		integers[counter] = '0';
-	while (n)
+	while (nb)
 	{
-		integers[counter--] = n % 10 + '0';
-		n /= 10;
+		integers[counter--] = nb % 10 + '0';
+		nb /= 10;
 	}
 	return (integers);
 }

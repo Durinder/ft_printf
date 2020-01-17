@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 13:14:23 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/17 16:50:00 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 20:01:11 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char		*choose_type_f(t_fields *fields)
 		s = ft_itoa_float(va_arg(fields->ap, long double));
 	else
 		s = ft_itoa_float(va_arg(fields->ap, double));
-//	ft_putendl("lapi");
 	s_rounded = ft_float_round(s, fields->precision);
 	ft_strdel(&s);
 	i = 0;

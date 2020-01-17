@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 11:57:13 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/10 14:45:13 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 20:18:35 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		conversion_p(t_fields *fields)
 	precision_check(fields, s);
 	print(fields, s);
 	if (fields->minus == 1)
-		while (fields->min-- -2 > 0)
+		while (fields->min-- - 2 > 0)
 		{
 			write(1, " ", 1);
 			fields->result++;

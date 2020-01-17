@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 14:30:45 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/10 12:20:34 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 20:04:10 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,11 @@
 
 static char	*additional_checks(char *s, t_fields *fields)
 {
-//	char	*hash_s;
-
 	if (ft_strcmp(s, "0") == 0 && (fields->precision == 0))
 	{
 		fields->hash = 0;
 		s[0] = '\0';
 	}
-/*	else if (ft_strcmp(s, "0") != 0 && fields->hash == 1)
-	{
-		hash_s = ft_strnew(ft_strlen(s));
-		hash_s = ft_strjoin("0x", s);
-		ft_strdel(&s);
-		s = ft_strdup(hash_s);
-		ft_strdel(&hash_s);
-	}*/
 	return (s);
 }
 

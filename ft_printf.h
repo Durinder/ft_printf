@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 12:02:43 by jhallama          #+#    #+#             */
-/*   Updated: 2020/01/08 13:38:03 by jhallama         ###   ########.fr       */
+/*   Updated: 2020/01/17 20:01:34 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_fields {
 	char	h;
 	char	l;
 	char	ll;
+	char	cap_l;
 }				t_fields;
 
 typedef struct	s_length_type_di {
@@ -47,7 +48,7 @@ typedef struct	s_length_type_di {
 	int			int_n;
 }				t_length_type_di;
 
-typedef struct s_length_type_ouxx {
+typedef struct	s_length_type_ouxx {
 	unsigned long		unsigned_long_n;
 	unsigned long long	unsigned_long_long_n;
 	unsigned short		unsigned_short_n;
@@ -75,4 +76,5 @@ char			*choose_type_o(t_fields *fields);
 char			*choose_type_u(t_fields *fields);
 char			*choose_type_x(t_fields *fields);
 char			*choose_type_cap_x(t_fields *fields);
+char			*choose_type_f(t_fields *fields);
 #endif

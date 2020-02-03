@@ -5,4 +5,4 @@ ft_printf works in the exact similar way as the standard C library function prin
 
 Some functionalities of printf aren't included.
 
-ft_printf works with: the flags #, 0, -, ' ', +, the minimum field with, precision, length modifiers hh, h, l, ll, L, conversions d, i, o, u, x, X, f, and with wildcards.
+ft_printf works with: the flags #, 0, -, ' ', +, the minimum field with, precision, length modifiers hh, h, l, ll, L, conversions %%, c, s, p, d, i, o, u, x, X, f, and with wildcards.
